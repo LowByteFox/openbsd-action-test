@@ -22,3 +22,13 @@ jobs:
       with:
         name: uname-${{ matrix.version }}
         path: uwu-${{ matrix.version }}.txt
+  merge:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Merge All artifacts
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Display structure of downloaded files
+        run: ls -la artifacts/
