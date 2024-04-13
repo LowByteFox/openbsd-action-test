@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        version: [7.2, 7.3, 7.4, 7.5]
+        version: [7.3, 7.4, 7.5]
     runs-on: ubuntu-latest
     name: OpenBSD x86_64
     steps:
