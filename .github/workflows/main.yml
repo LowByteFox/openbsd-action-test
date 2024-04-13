@@ -17,7 +17,7 @@ jobs:
       with:
         sync: sshfs
         release: ${{ matrix.version }}
-        run: uname -a > uwu-${{ matrix.version }}.txt
+        run: uname -a > uname-OpenBSD-x86_64-${{ matrix.version }}.txt
     - uses: actions/upload-artifact@v4
       with:
         name: uname-OpenBSD-x86_64-${{ matrix.version }}
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: .
-      - name: Display structure of downloaded files
+      - name: Merge Artifacts
         run: |
           mkdir unames
           mv uname-*/* unames/
