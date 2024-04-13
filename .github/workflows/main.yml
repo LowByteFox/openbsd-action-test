@@ -20,8 +20,8 @@ jobs:
         run: uname -a > uwu-${{ matrix.version }}.txt
     - uses: actions/upload-artifact@v4
       with:
-        name: uname-${{ matrix.version }}
-        path: uwu-${{ matrix.version }}.txt
+        name: uname-OpenBSD-x86_64-${{ matrix.version }}
+        path: uname-OpenBSD-x86_64-${{ matrix.version }}.txt
   merge:
     needs: build
     runs-on: ubuntu-latest
@@ -31,4 +31,13 @@ jobs:
         with:
           path: .
       - name: Display structure of downloaded files
-        run: ls -la -R ./
+        run: |
+          mkdir unames
+          mv uname-*/* unames/
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: uname-*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: unames
+          path: unames/*
