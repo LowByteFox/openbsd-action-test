@@ -29,6 +29,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          path: artifacts
+          path: .
       - name: Display structure of downloaded files
-        run: ls -la artifacts/
+        run: ls -la -R ./
