@@ -14,3 +14,7 @@ jobs:
       with:
         sync: sshfs
         run: uname > uwu.txt
+    - uses: actions/upload-artifact@v4
+      with:
+        name: uname
+        path: uwu.txt
