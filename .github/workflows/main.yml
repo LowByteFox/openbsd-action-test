@@ -1,0 +1,16 @@
+name: Test
+
+on: [workflow_run]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A job to run test in OpenBSD
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test in OpenBSD
+      id: test
+      uses: vmactions/openbsd-vm@v1.0.8
+      with:
+        sync: sshfs
+        run: uname > uwu.txt
