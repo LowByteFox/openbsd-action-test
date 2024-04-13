@@ -13,7 +13,7 @@ jobs:
       uses: vmactions/openbsd-vm@v1.0.8
       with:
         sync: sshfs
-        run: uname > uwu.txt
+        run: uname -a > uwu.txt
     - uses: actions/upload-artifact@v4
       with:
         name: uname
