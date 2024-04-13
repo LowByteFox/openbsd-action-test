@@ -3,18 +3,22 @@ name: Test
 on: [push]
 
 jobs:
-  test:
+  build:
+    strategy:
+      matrix:
+        version: [7.2, 7.3, 7.4, 7.5]
     runs-on: ubuntu-latest
-    name: A job to run test in OpenBSD
+    name: OpenBSD x86_64
     steps:
     - uses: actions/checkout@v4
-    - name: Test in OpenBSD
+    - name: ${{ matrix.version }}
       id: test
       uses: vmactions/openbsd-vm@v1.0.8
       with:
         sync: sshfs
-        run: uname -a > uwu.txt
+        release: ${{ matrix.version }}
+        run: uname -a > uwu-${{ matrix.version }}.txt
     - uses: actions/upload-artifact@v4
       with:
-        name: uname
-        path: uwu.txt
+        name: uname-${{ matrix.version }}
+        path: uwu-${{ matrix.version }}.txt
